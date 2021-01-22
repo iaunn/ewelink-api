@@ -84,4 +84,37 @@ module.exports = {
 
     return { status: 'ok', state, channel };
   },
+
+  /**
+   * Change power state for a specific device by custom param
+   *
+   * @param deviceId
+   * @param params
+   *
+   * @returns {Promise<{state: *, status: string}|{msg: string, error: *}>}
+   */
+  async setDeviceCustom(deviceId, params = {}) {
+    const { APP_ID } = this;
+
+    const response = await this.makeRequest({
+      method: 'post',
+      uri: '/user/device/status',
+      body: {
+        deviceid: deviceId,
+        params,
+        appid: APP_ID,
+        nonce,
+        ts: timestamp,
+        version: 8,
+      },
+    });
+
+    const responseError = _get(response, 'error', false);
+
+    if (responseError) {
+      return { error: responseError, msg: errors[responseError] };
+    }
+
+    return { status: 'ok', response };
+  },
 };

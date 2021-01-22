@@ -15,7 +15,7 @@ const { getRegion } = require('./getRegion');
 const { makeRequest } = require('./makeRequest');
 const { openWebSocket } = require('./openWebSocket');
 const { saveDevicesCache } = require('./saveDevicesCache');
-const { setDevicePowerState } = require('./setDevicePowerState');
+const { setDevicePowerState, setDeviceCustom } = require('./setDevicePowerState');
 const { toggleDevice } = require('./toggleDevice');
 
 const mixins = {
@@ -38,6 +38,7 @@ const mixins = {
   saveDevicesCache,
   setDevicePowerState,
   toggleDevice,
+  setDeviceCustom
 };
 
 module.exports = mixins;
